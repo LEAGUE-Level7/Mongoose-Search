@@ -19,7 +19,7 @@ public class ApiDocConfig {
     private ApiInfo apiInfo() {
         return new ApiInfo(
                 "Level 7 Mongoose Search",
-                "League of Amazing Programmers Level 7 Mongoose Search",
+                "League of Amazing Programmers Level 7 Jerboa Search",
                 "1.0.0",
                 null,
                 new Contact("Matt Freedman", "www.jointheleague.org", "matt.freedman@jointheleague.org"),
