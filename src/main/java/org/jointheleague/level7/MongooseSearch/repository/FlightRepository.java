@@ -10,6 +10,7 @@ import reactor.core.publisher.Mono;
 public class FlightRepository {
     private final WebClient webClient;
     private static final String baseUrl= "http://api.aviationstack.com/v1/flights";
+    private final String accessKey = "747ca55c8b46ed9f3b1956e6b7eb6394";
 
     public FlightRepository() {
         webClient = WebClient
@@ -23,7 +24,7 @@ public class FlightRepository {
         Mono<String> stringMono = webClient
                 .get()
                 .uri(uriBuilder -> uriBuilder
-                        .queryParam("access_key", "747ca55c8b46ed9f3b1956e6b7eb6394")
+                        .queryParam("access_key", accessKey)
                         .queryParam("arr_iata", iataAirportCode)
                         .build()
                 ).retrieve()
