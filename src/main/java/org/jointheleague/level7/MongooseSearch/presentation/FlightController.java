@@ -3,6 +3,7 @@ package org.jointheleague.level7.MongooseSearch.presentation;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.jointheleague.level7.MongooseSearch.service.FlightService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/flights")
 public class FlightController {
+    private final FlightService flightService;
+
+    public FlightController(FlightService flightService){
+        this.flightService = flightService;
+    }
     @GetMapping("/arriving")
     @ApiOperation(value="Searches aviationstack for arriving flights at this airport.", response=String.class)
     @ApiResponses(value={
@@ -18,7 +24,7 @@ public class FlightController {
             @ApiResponse(code=404,message="No flight results found.")
     })
     public String getArrivingFlights(@RequestParam("q") String iataAirportCode){
-        return "The airport code of the requested airport is "+iataAirportCode;
+        return flightService.getArrivingFlights(iataAirportCode);
     }
 
 }
