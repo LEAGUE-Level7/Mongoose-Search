@@ -12,7 +12,7 @@ public class FlightService {
     }
 
     public String getArrivingFlights(String iataAirportCode){
-        return "FlightService:" + iataAirportCode;
+        return flightRepository.getArrivingFlights(iataAirportCode);
     }
 
 }
