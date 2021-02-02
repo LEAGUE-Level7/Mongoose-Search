@@ -1,6 +1,6 @@
-package org.jointheleague.level7.MongooseSearch.presentation.service;
+package org.jointheleague.level7.MongooseSearch.service;
 
-import org.jointheleague.level7.MongooseSearch.presentation.repository.FlightRepository;
+import org.jointheleague.level7.MongooseSearch.repository.FlightRepository;
 import org.springframework.stereotype.Service;
 
 @Service // dictates service-layer class (and component)

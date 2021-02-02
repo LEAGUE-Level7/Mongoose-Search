@@ -1,4 +1,4 @@
-package org.jointheleague.level7.MongooseSearch.presentation.repository;
+package org.jointheleague.level7.MongooseSearch.repository;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
