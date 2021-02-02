@@ -1,5 +1,7 @@
 package org.jointheleague.level7.MongooseSearch.repository;
 
+
+import org.jointheleague.level7.MongooseSearch.repository.DTO.AviationStackResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Repository;
@@ -23,15 +25,15 @@ public class FlightRepository {
                 .build(); // builds webClient
     }
     //http://api.aviationstack.com/v1/flights?access_key=747ca55c8b46ed9f3b1956e6b7eb6394&arr_iata=SAN
-    public String getArrivingFlights(String iataAirportCode){
-        Mono<String> stringMono = webClient.get()
+    public AviationStackResponse getArrivingFlights(String iataAirportCode){
+        Mono<AviationStackResponse> aviationStackResponseMono = webClient.get()
                 .uri(uriBuilder -> uriBuilder // updates uri with the paramaters that we need for stuff
                         .queryParam("access_key", accessKey)
                         .queryParam("&arr_iata", iataAirportCode)
                         .build()
                 ).retrieve()
-                .bodyToMono(String.class); // allows synchronous request(I think)
-        return stringMono.block(); // waits for the request to complete
+                .bodyToMono(AviationStackResponse.class); // allows synchronous request(I think)
+        return aviationStackResponseMono.block(); // waits for the request to complete
 
     }
 }
