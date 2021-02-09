@@ -1,152 +1,135 @@
 
 package org.jointheleague.level7.MongooseSearch.repository.dto;
 
+import java.util.HashMap;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+    "airport",
+    "timezone",
+    "iata",
+    "terminal",
+    "gate",
+    "scheduled",
+    "estimated",
+    "actual"
+})
 public class Arrival {
 
     @JsonProperty("airport")
-
     private String airport;
     @JsonProperty("timezone")
-
     private String timezone;
     @JsonProperty("iata")
-
     private String iata;
-    @JsonProperty("icao")
-
-    private String icao;
     @JsonProperty("terminal")
-
     private String terminal;
     @JsonProperty("gate")
-
-    private Object gate;
-    @JsonProperty("baggage")
-
-    private Object baggage;
-    @JsonProperty("delay")
-
-    private Object delay;
+    private String gate;
     @JsonProperty("scheduled")
-
     private String scheduled;
     @JsonProperty("estimated")
-
     private String estimated;
     @JsonProperty("actual")
+    private String actual;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    private Object actual;
-    @JsonProperty("estimated_runway")
-
-    private Object estimatedRunway;
-    @JsonProperty("actual_runway")
-
-    private Object actualRunway;
-
+    @JsonProperty("airport")
     public String getAirport() {
         return airport;
     }
 
+    @JsonProperty("airport")
     public void setAirport(String airport) {
         this.airport = airport;
     }
 
+    @JsonProperty("timezone")
     public String getTimezone() {
         return timezone;
     }
 
+    @JsonProperty("timezone")
     public void setTimezone(String timezone) {
         this.timezone = timezone;
     }
 
+    @JsonProperty("iata")
     public String getIata() {
         return iata;
     }
 
+    @JsonProperty("iata")
     public void setIata(String iata) {
         this.iata = iata;
     }
 
-    public String getIcao() {
-        return icao;
-    }
-
-    public void setIcao(String icao) {
-        this.icao = icao;
-    }
-
+    @JsonProperty("terminal")
     public String getTerminal() {
         return terminal;
     }
 
+    @JsonProperty("terminal")
     public void setTerminal(String terminal) {
         this.terminal = terminal;
     }
 
-    public Object getGate() {
+    @JsonProperty("gate")
+    public String getGate() {
         return gate;
     }
 
-    public void setGate(Object gate) {
+    @JsonProperty("gate")
+    public void setGate(String gate) {
         this.gate = gate;
     }
 
-    public Object getBaggage() {
-        return baggage;
-    }
-
-    public void setBaggage(Object baggage) {
-        this.baggage = baggage;
-    }
-
-    public Object getDelay() {
-        return delay;
-    }
-
-    public void setDelay(Object delay) {
-        this.delay = delay;
-    }
-
+    @JsonProperty("scheduled")
     public String getScheduled() {
         return scheduled;
     }
 
+    @JsonProperty("scheduled")
     public void setScheduled(String scheduled) {
         this.scheduled = scheduled;
     }
 
+    @JsonProperty("estimated")
     public String getEstimated() {
         return estimated;
     }
 
+    @JsonProperty("estimated")
     public void setEstimated(String estimated) {
         this.estimated = estimated;
     }
 
-    public Object getActual() {
+    @JsonProperty("actual")
+    public String getActual() {
         return actual;
     }
 
-    public void setActual(Object actual) {
+    @JsonProperty("actual")
+    public void setActual(String actual) {
         this.actual = actual;
     }
 
-    public Object getEstimatedRunway() {
-        return estimatedRunway;
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
     }
 
-    public void setEstimatedRunway(Object estimatedRunway) {
-        this.estimatedRunway = estimatedRunway;
-    }
-
-    public Object getActualRunway() {
-        return actualRunway;
-    }
-
-    public void setActualRunway(Object actualRunway) {
-        this.actualRunway = actualRunway;
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
 
 }

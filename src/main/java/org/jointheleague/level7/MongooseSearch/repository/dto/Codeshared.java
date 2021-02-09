@@ -12,49 +12,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "number",
-    "iata",
-    "codeshared"
+    "airline_name",
+    "flight_iata"
 })
-public class Flight {
+public class Codeshared {
 
-    @JsonProperty("number")
-    private String number;
-    @JsonProperty("iata")
-    private String iata;
-    @JsonProperty("codeshared")
-    private Codeshared codeshared;
+    @JsonProperty("airline_name")
+    private String airlineName;
+    @JsonProperty("flight_iata")
+    private String flightIata;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("number")
-    public String getNumber() {
-        return number;
+    @JsonProperty("airline_name")
+    public String getAirlineName() {
+        return airlineName;
     }
 
-    @JsonProperty("number")
-    public void setNumber(String number) {
-        this.number = number;
+    @JsonProperty("airline_name")
+    public void setAirlineName(String airlineName) {
+        this.airlineName = airlineName;
     }
 
-    @JsonProperty("iata")
-    public String getIata() {
-        return iata;
+    @JsonProperty("flight_iata")
+    public String getFlightIata() {
+        return flightIata;
     }
 
-    @JsonProperty("iata")
-    public void setIata(String iata) {
-        this.iata = iata;
-    }
-
-    @JsonProperty("codeshared")
-    public Codeshared getCodeshared() {
-        return codeshared;
-    }
-
-    @JsonProperty("codeshared")
-    public void setCodeshared(Codeshared codeshared) {
-        this.codeshared = codeshared;
+    @JsonProperty("flight_iata")
+    public void setFlightIata(String flightIata) {
+        this.flightIata = flightIata;
     }
 
     @JsonAnyGetter
