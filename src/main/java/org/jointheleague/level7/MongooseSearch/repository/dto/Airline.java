@@ -13,7 +13,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "name",
-    "iata"
+    "iata",
+    "icao"
 })
 public class Airline {
 
@@ -21,6 +22,8 @@ public class Airline {
     private String name;
     @JsonProperty("iata")
     private String iata;
+    @JsonProperty("icao")
+    private String icao;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -42,6 +45,16 @@ public class Airline {
     @JsonProperty("iata")
     public void setIata(String iata) {
         this.iata = iata;
+    }
+
+    @JsonProperty("icao")
+    public String getIcao() {
+        return icao;
+    }
+
+    @JsonProperty("icao")
+    public void setIcao(String icao) {
+        this.icao = icao;
     }
 
     @JsonAnyGetter

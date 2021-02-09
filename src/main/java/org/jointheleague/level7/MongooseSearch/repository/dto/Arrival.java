@@ -15,11 +15,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "airport",
     "timezone",
     "iata",
+    "icao",
     "terminal",
     "gate",
+    "baggage",
+    "delay",
     "scheduled",
     "estimated",
-    "actual"
+    "actual",
+    "estimated_runway",
+    "actual_runway"
 })
 public class Arrival {
 
@@ -29,16 +34,26 @@ public class Arrival {
     private String timezone;
     @JsonProperty("iata")
     private String iata;
+    @JsonProperty("icao")
+    private String icao;
     @JsonProperty("terminal")
-    private String terminal;
+    private Object terminal;
     @JsonProperty("gate")
-    private String gate;
+    private Object gate;
+    @JsonProperty("baggage")
+    private Object baggage;
+    @JsonProperty("delay")
+    private Object delay;
     @JsonProperty("scheduled")
     private String scheduled;
     @JsonProperty("estimated")
     private String estimated;
     @JsonProperty("actual")
-    private String actual;
+    private Object actual;
+    @JsonProperty("estimated_runway")
+    private Object estimatedRunway;
+    @JsonProperty("actual_runway")
+    private Object actualRunway;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -72,24 +87,54 @@ public class Arrival {
         this.iata = iata;
     }
 
+    @JsonProperty("icao")
+    public String getIcao() {
+        return icao;
+    }
+
+    @JsonProperty("icao")
+    public void setIcao(String icao) {
+        this.icao = icao;
+    }
+
     @JsonProperty("terminal")
-    public String getTerminal() {
+    public Object getTerminal() {
         return terminal;
     }
 
     @JsonProperty("terminal")
-    public void setTerminal(String terminal) {
+    public void setTerminal(Object terminal) {
         this.terminal = terminal;
     }
 
     @JsonProperty("gate")
-    public String getGate() {
+    public Object getGate() {
         return gate;
     }
 
     @JsonProperty("gate")
-    public void setGate(String gate) {
+    public void setGate(Object gate) {
         this.gate = gate;
+    }
+
+    @JsonProperty("baggage")
+    public Object getBaggage() {
+        return baggage;
+    }
+
+    @JsonProperty("baggage")
+    public void setBaggage(Object baggage) {
+        this.baggage = baggage;
+    }
+
+    @JsonProperty("delay")
+    public Object getDelay() {
+        return delay;
+    }
+
+    @JsonProperty("delay")
+    public void setDelay(Object delay) {
+        this.delay = delay;
     }
 
     @JsonProperty("scheduled")
@@ -113,13 +158,33 @@ public class Arrival {
     }
 
     @JsonProperty("actual")
-    public String getActual() {
+    public Object getActual() {
         return actual;
     }
 
     @JsonProperty("actual")
-    public void setActual(String actual) {
+    public void setActual(Object actual) {
         this.actual = actual;
+    }
+
+    @JsonProperty("estimated_runway")
+    public Object getEstimatedRunway() {
+        return estimatedRunway;
+    }
+
+    @JsonProperty("estimated_runway")
+    public void setEstimatedRunway(Object estimatedRunway) {
+        this.estimatedRunway = estimatedRunway;
+    }
+
+    @JsonProperty("actual_runway")
+    public Object getActualRunway() {
+        return actualRunway;
+    }
+
+    @JsonProperty("actual_runway")
+    public void setActualRunway(Object actualRunway) {
+        this.actualRunway = actualRunway;
     }
 
     @JsonAnyGetter

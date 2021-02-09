@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
     "number",
     "iata",
+    "icao",
     "codeshared"
 })
 public class Flight {
@@ -22,8 +23,10 @@ public class Flight {
     private String number;
     @JsonProperty("iata")
     private String iata;
+    @JsonProperty("icao")
+    private String icao;
     @JsonProperty("codeshared")
-    private Codeshared codeshared;
+    private Object codeshared;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -47,13 +50,23 @@ public class Flight {
         this.iata = iata;
     }
 
+    @JsonProperty("icao")
+    public String getIcao() {
+        return icao;
+    }
+
+    @JsonProperty("icao")
+    public void setIcao(String icao) {
+        this.icao = icao;
+    }
+
     @JsonProperty("codeshared")
-    public Codeshared getCodeshared() {
+    public Object getCodeshared() {
         return codeshared;
     }
 
     @JsonProperty("codeshared")
-    public void setCodeshared(Codeshared codeshared) {
+    public void setCodeshared(Object codeshared) {
         this.codeshared = codeshared;
     }
 
