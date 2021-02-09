@@ -12,36 +12,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "airport",
-    "iata"
+    "airline_name",
+    "flight_iata"
 })
-public class Departure {
+public class Codeshared {
 
-    @JsonProperty("airport")
-    private String airport;
-    @JsonProperty("iata")
-    private String iata;
+    @JsonProperty("airline_name")
+    private String airlineName;
+    @JsonProperty("flight_iata")
+    private String flightIata;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("airport")
-    public String getAirport() {
-        return airport;
+    @JsonProperty("airline_name")
+    public String getAirlineName() {
+        return airlineName;
     }
 
-    @JsonProperty("airport")
-    public void setAirport(String airport) {
-        this.airport = airport;
+    @JsonProperty("airline_name")
+    public void setAirlineName(String airlineName) {
+        this.airlineName = airlineName;
     }
 
-    @JsonProperty("iata")
-    public String getIata() {
-        return iata;
+    @JsonProperty("flight_iata")
+    public String getFlightIata() {
+        return flightIata;
     }
 
-    @JsonProperty("iata")
-    public void setIata(String iata) {
-        this.iata = iata;
+    @JsonProperty("flight_iata")
+    public void setFlightIata(String flightIata) {
+        this.flightIata = flightIata;
     }
 
     @JsonAnyGetter

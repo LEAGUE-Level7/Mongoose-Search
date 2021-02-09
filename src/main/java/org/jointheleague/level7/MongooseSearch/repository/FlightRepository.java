@@ -37,3 +37,37 @@ public class FlightRepository {
 
     }
 }
+/*
+{
+      "flight_date": "2021-02-01",
+      "flight_status": "landed",
+      "departure": {
+        "airport": "Seattle-Tacoma International",
+        "iata": "SEA",
+      },
+      "arrival": {
+        "airport": "San Diego International Airport",
+        "timezone": "America/Los_Angeles",
+        "iata": "SAN",
+        "terminal": "2",
+        "gate": "20",
+        "scheduled": "2021-02-01T14:00:00+00:00",
+        "estimated": "2021-02-01T14:00:00+00:00",
+        "actual": "2021-02-01T13:56:00+00:00",
+      },
+      "airline": {
+        "name": "Korean Air",
+        "iata": "KE",
+      },
+      "flight": {
+        "number": "6125",
+        "iata": "KE6125",
+        "codeshared": {
+          "airline_name": "alaska airlines",
+          "flight_iata": "as1478",
+        }
+      }
+
+    }
+
+ */
