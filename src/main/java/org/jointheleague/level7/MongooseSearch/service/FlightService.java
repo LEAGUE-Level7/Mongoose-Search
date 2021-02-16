@@ -4,7 +4,7 @@ import org.jointheleague.level7.MongooseSearch.repository.DTO.AviationStackRespo
 import org.jointheleague.level7.MongooseSearch.repository.FlightRepository;
 import org.springframework.stereotype.Service;
 
-@Service // dictates service-layer class (and component)
+@Service
 public class FlightService {
     private final FlightRepository flightRepository;
 
@@ -15,5 +15,4 @@ public class FlightService {
     public AviationStackResponse getArrivingFlights(String iataAirportCode){
         return flightRepository.getArrivingFlights(iataAirportCode);
     }
-
 }
