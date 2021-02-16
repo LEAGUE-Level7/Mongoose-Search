@@ -1,19 +1,17 @@
 
 package org.jointheleague.level7.MongooseSearch.repository.DTO;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.util.HashMap;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+@JsonIgnoreProperties({"icao"})
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "number",
     "iata",
+    "icao",
     "codeshared"
 })
 public class Flight {
@@ -22,6 +20,8 @@ public class Flight {
     private String number;
     @JsonProperty("iata")
     private String iata;
+    @JsonProperty("icao")
+    private String icao;
     @JsonProperty("codeshared")
     private Codeshared codeshared;
     @JsonIgnore
@@ -45,6 +45,16 @@ public class Flight {
     @JsonProperty("iata")
     public void setIata(String iata) {
         this.iata = iata;
+    }
+
+    @JsonProperty("icao")
+    public String getIcao() {
+        return icao;
+    }
+
+    @JsonProperty("icao")
+    public void setIcao(String icao) {
+        this.icao = icao;
     }
 
     @JsonProperty("codeshared")
