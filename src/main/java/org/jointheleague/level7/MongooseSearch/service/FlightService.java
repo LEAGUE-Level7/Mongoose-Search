@@ -1,7 +1,7 @@
 package org.jointheleague.level7.MongooseSearch.service;
 
+import org.jointheleague.level7.MongooseSearch.repository.DTO.AviationStackResponse;
 import org.jointheleague.level7.MongooseSearch.repository.FlightRepository;
-import org.jointheleague.level7.MongooseSearch.repository.dto.AviationStackResponse;
 import org.springframework.stereotype.Service;
 
 @Service
