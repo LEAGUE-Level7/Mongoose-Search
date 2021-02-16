@@ -3,24 +3,61 @@ package org.jointheleague.level7.MongooseSearch.repository.DTO;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.fasterxml.jackson.annotation.*;
 
+@JsonIgnoreProperties({
+        "timezone",
+        "icao",
+        "terminal",
+        "gate",
+        "delay",
+        "scheduled",
+        "estimated",
+        "actual",
+        "estimated_runway",
+        "actual_runway" })
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "airport",
-    "iata"
+    "timezone",
+    "iata",
+    "icao",
+    "terminal",
+    "gate",
+    "delay",
+    "scheduled",
+    "estimated",
+    "actual",
+    "estimated_runway",
+    "actual_runway"
 })
 public class Departure {
 
     @JsonProperty("airport")
     private String airport;
+    @JsonProperty("timezone")
+    private String timezone;
     @JsonProperty("iata")
     private String iata;
+    @JsonProperty("icao")
+    private String icao;
+    @JsonProperty("terminal")
+    private Object terminal;
+    @JsonProperty("gate")
+    private Object gate;
+    @JsonProperty("delay")
+    private Integer delay;
+    @JsonProperty("scheduled")
+    private String scheduled;
+    @JsonProperty("estimated")
+    private String estimated;
+    @JsonProperty("actual")
+    private Object actual;
+    @JsonProperty("estimated_runway")
+    private Object estimatedRunway;
+    @JsonProperty("actual_runway")
+    private Object actualRunway;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -34,6 +71,16 @@ public class Departure {
         this.airport = airport;
     }
 
+    @JsonProperty("timezone")
+    public String getTimezone() {
+        return timezone;
+    }
+
+    @JsonProperty("timezone")
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
     @JsonProperty("iata")
     public String getIata() {
         return iata;
@@ -42,6 +89,96 @@ public class Departure {
     @JsonProperty("iata")
     public void setIata(String iata) {
         this.iata = iata;
+    }
+
+    @JsonProperty("icao")
+    public String getIcao() {
+        return icao;
+    }
+
+    @JsonProperty("icao")
+    public void setIcao(String icao) {
+        this.icao = icao;
+    }
+
+    @JsonProperty("terminal")
+    public Object getTerminal() {
+        return terminal;
+    }
+
+    @JsonProperty("terminal")
+    public void setTerminal(Object terminal) {
+        this.terminal = terminal;
+    }
+
+    @JsonProperty("gate")
+    public Object getGate() {
+        return gate;
+    }
+
+    @JsonProperty("gate")
+    public void setGate(Object gate) {
+        this.gate = gate;
+    }
+
+    @JsonProperty("delay")
+    public Integer getDelay() {
+        return delay;
+    }
+
+    @JsonProperty("delay")
+    public void setDelay(Integer delay) {
+        this.delay = delay;
+    }
+
+    @JsonProperty("scheduled")
+    public String getScheduled() {
+        return scheduled;
+    }
+
+    @JsonProperty("scheduled")
+    public void setScheduled(String scheduled) {
+        this.scheduled = scheduled;
+    }
+
+    @JsonProperty("estimated")
+    public String getEstimated() {
+        return estimated;
+    }
+
+    @JsonProperty("estimated")
+    public void setEstimated(String estimated) {
+        this.estimated = estimated;
+    }
+
+    @JsonProperty("actual")
+    public Object getActual() {
+        return actual;
+    }
+
+    @JsonProperty("actual")
+    public void setActual(Object actual) {
+        this.actual = actual;
+    }
+
+    @JsonProperty("estimated_runway")
+    public Object getEstimatedRunway() {
+        return estimatedRunway;
+    }
+
+    @JsonProperty("estimated_runway")
+    public void setEstimatedRunway(Object estimatedRunway) {
+        this.estimatedRunway = estimatedRunway;
+    }
+
+    @JsonProperty("actual_runway")
+    public Object getActualRunway() {
+        return actualRunway;
+    }
+
+    @JsonProperty("actual_runway")
+    public void setActualRunway(Object actualRunway) {
+        this.actualRunway = actualRunway;
     }
 
     @JsonAnyGetter
