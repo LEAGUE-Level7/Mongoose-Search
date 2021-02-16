@@ -3,17 +3,15 @@ package org.jointheleague.level7.MongooseSearch.repository.DTO;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.fasterxml.jackson.annotation.*;
+
+@JsonIgnoreProperties({"icao"})
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "name",
-    "iata"
+    "iata",
+    "icao"
 })
 public class Airline {
 
@@ -21,6 +19,8 @@ public class Airline {
     private String name;
     @JsonProperty("iata")
     private String iata;
+    @JsonProperty("icao")
+    private String icao;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -42,6 +42,16 @@ public class Airline {
     @JsonProperty("iata")
     public void setIata(String iata) {
         this.iata = iata;
+    }
+
+    @JsonProperty("icao")
+    public String getIcao() {
+        return icao;
+    }
+
+    @JsonProperty("icao")
+    public void setIcao(String icao) {
+        this.icao = icao;
     }
 
     @JsonAnyGetter
