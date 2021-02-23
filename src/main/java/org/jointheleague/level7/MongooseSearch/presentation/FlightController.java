@@ -18,6 +18,8 @@ public class FlightController {
     public FlightController(FlightService flightService){
         this.flightService = flightService;
     }
+
+    // arriving flights method plus annotations
     @GetMapping("/arriving")
     @ApiOperation(value="Searches aviationstack for arriving flights at this airport.", response=String.class)
     @ApiResponses(value={
@@ -26,6 +28,17 @@ public class FlightController {
     })
     public AviationStackResponse getArrivingFlights(@RequestParam("q") String iataAirportCode){
         return flightService.getArrivingFlights(iataAirportCode);
+    }
+
+    // departing flights method plus annotations
+    @GetMapping("/departing")
+    @ApiOperation(value="Searches aviationstack for departing flights at this airport.", response=String.class)
+    @ApiResponses(value={
+            @ApiResponse(code=200,message="Flight results found."),
+            @ApiResponse(code=404,message="No flight results found.")
+    })
+    public AviationStackResponse getDepartingFlights(@RequestParam("q") String iataAirportCode){
+        return flightService.getDepartingFlights(iataAirportCode);
     }
 
 }
