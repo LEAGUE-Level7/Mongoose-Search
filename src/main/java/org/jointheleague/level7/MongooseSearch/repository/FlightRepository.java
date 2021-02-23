@@ -33,6 +33,18 @@ public class FlightRepository {
         return aviationStackResponseMono.block();
     }
 
+    public AviationStackResponse getDepartingFlights(String iataAirportCode){
+        Mono<AviationStackResponse> aviationStackResponseMono = webClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .queryParam("access_key", accessKey)
+                        .queryParam("dep_iata", iataAirportCode)
+                        .build())
+                .retrieve()
+                .bodyToMono(AviationStackResponse.class);
+        return aviationStackResponseMono.block();
+    }
+
     /*
     {
       "flight_date": "2021-02-01",
