@@ -15,4 +15,8 @@ public class FlightService {
     public AviationStackResponse getArrivingFlights(String iataAirportCode){
         return flightRepository.getArrivingFlights(iataAirportCode);
     }
+
+    public AviationStackResponse getDepartingFlights(String iataAirportCode) {
+        return flightRepository.getDepartingFlights(iataAirportCode);
+    }
 }
