@@ -38,7 +38,7 @@ public class FlightRepository {
                 .get()
                 .uri(uriBuilder -> uriBuilder
                         .queryParam("access_key", accessKey)
-                        .queryParam("dep_iata", iataAirportCode)
+                        .queryParam("dep_iata", iataAirportCode) // dep_iata for departure data
                         .build())
                 .retrieve()
                 .bodyToMono(AviationStackResponse.class);

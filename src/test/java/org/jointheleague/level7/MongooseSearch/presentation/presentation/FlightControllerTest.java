@@ -1,25 +1,27 @@
-package org.jointheleague.level7.MongooseSearch.service;
+package org.jointheleague.level7.MongooseSearch.presentation.presentation;
 
+import org.jointheleague.level7.MongooseSearch.presentation.FlightController;
 import org.jointheleague.level7.MongooseSearch.repository.DTO.AviationStackResponse;
-import org.jointheleague.level7.MongooseSearch.repository.FlightRepository;
+import org.jointheleague.level7.MongooseSearch.service.FlightService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-class FlightServiceTest {
-    private FlightService flightService;
+import static org.junit.jupiter.api.Assertions.*;
 
-    @Mock
-    private FlightRepository flightRepository;
+class FlightControllerTest {
+    private FlightController flightController;
+    @Mock // creates a mock flight service
+    private FlightService flightService;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
-        flightService = new FlightService(flightRepository);
+        // mock - fake flight service
+        MockitoAnnotations.openMocks(this); // test class in which we want to initialize the mock
+
+        flightController = new FlightController(flightService);
     }
 
     @Test
@@ -28,11 +30,12 @@ class FlightServiceTest {
         String iataAirportCode = "SAN";
         AviationStackResponse expectedArrivingFlights = new AviationStackResponse();
 
-        when(flightRepository.getArrivingFlights(iataAirportCode))
+            // stubbing -- when() and .thenReturn() from import static org.mockito.Mockito.when;
+        when(flightService.getArrivingFlights(iataAirportCode))
                 .thenReturn(expectedArrivingFlights);
 
         // when
-        AviationStackResponse actualArrivingFlights = flightService.getArrivingFlights(iataAirportCode);
+        AviationStackResponse actualArrivingFlights = flightController.getArrivingFlights(iataAirportCode);
 
         // then
         assertEquals(expectedArrivingFlights, actualArrivingFlights);
@@ -44,11 +47,12 @@ class FlightServiceTest {
         String iataAirportCode = "SAN";
         AviationStackResponse expectedDepartingFlights = new AviationStackResponse();
 
-        when(flightRepository.getDepartingFlights(iataAirportCode))
+            // stubbing
+        when(flightService.getDepartingFlights(iataAirportCode))
                 .thenReturn(expectedDepartingFlights);
 
         // when
-        AviationStackResponse actualDepartingFlights = flightService.getDepartingFlights(iataAirportCode);
+        AviationStackResponse actualDepartingFlights = flightController.getDepartingFlights(iataAirportCode);
 
         // then
         assertEquals(expectedDepartingFlights, actualDepartingFlights);
