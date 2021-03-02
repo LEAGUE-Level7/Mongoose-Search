@@ -28,4 +28,15 @@ public class FlightController {
         return flightService.getArrivingFlights(iataAirportCode);
     }
 
+    @GetMapping("/departing")
+    @ApiOperation(value="Searches aviationstack for departing flights from this aiport.", response=String.class)
+    @ApiResponses(value={
+            @ApiResponse(code=200,message="Flight results found."),
+            @ApiResponse(code=404,message="No flight results found.")
+
+    })
+    public AviationStackResponse getDepartingFlights(@RequestParam("q") String iataAirportCode){
+        return flightService.getDepartingFlights(iataAirportCode);
+    }
+
 }
