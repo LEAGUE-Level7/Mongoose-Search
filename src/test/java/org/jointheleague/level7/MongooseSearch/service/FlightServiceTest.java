@@ -1,8 +1,7 @@
 package org.jointheleague.level7.MongooseSearch.service;
 
-import org.jointheleague.level7.MongooseSearch.presentation.FlightController;
 import org.jointheleague.level7.MongooseSearch.repository.DTO.AviationStackResponse;
-import org.junit.jupiter.api.AfterEach;
+import org.jointheleague.level7.MongooseSearch.repository.FlightRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -15,11 +14,11 @@ class FlightServiceTest {
 
     private FlightService flightService;
     @Mock
-    private FlightController flightController;
+    private FlightRepository flightRepository;
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        flightService = new FlightService(flightController);
+        flightService = new FlightService(flightRepository);
     }
 
 
@@ -29,7 +28,7 @@ class FlightServiceTest {
         String iataAirportCode = "SAN";
         AviationStackResponse expectedArrivingFlights = new AviationStackResponse();
 
-        when(flightController.getArrivingFlights(iataAirportCode))
+        when(flightRepository.getArrivingFlights(iataAirportCode))
                 .thenReturn(expectedArrivingFlights);
         // when
         AviationStackResponse actualArrivingFlights = flightService.getArrivingFlights(iataAirportCode);
@@ -43,7 +42,7 @@ class FlightServiceTest {
         String iataAirportCode = "SAN";
         AviationStackResponse expectedDepartingFlights = new AviationStackResponse();
 
-        when(flightController.getDepartingFlights(iataAirportCode))
+        when(flightRepository.getDepartingFlights(iataAirportCode))
                 .thenReturn(expectedDepartingFlights);
         // when
         AviationStackResponse actualDepartingFlights = flightService.getDepartingFlights(iataAirportCode);

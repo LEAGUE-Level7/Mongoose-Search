@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public class FlightRepository {
-    private final WebClient webClient;
+    private WebClient webClient;
     private static final String baseUrl= "http://api.aviationstack.com/v1/flights";
     private final String accessKey = "747ca55c8b46ed9f3b1956e6b7eb6394";
 
@@ -44,38 +44,7 @@ public class FlightRepository {
         return aviationStackResponseMono.block();
     }
 
-
-    /*
-    {
-      "flight_date": "2021-02-01",
-      "flight_status": "landed",
-      "departure": {
-        "airport": "Seattle-Tacoma International",
-        "iata": "SEA",
-      },
-      "arrival": {
-        "airport": "San Diego International Airport",
-        "timezone": "America/Los_Angeles",
-        "iata": "SAN",
-        "terminal": "2",
-        "gate": "20",
-        "scheduled": "2021-02-01T14:00:00+00:00",
-        "estimated": "2021-02-01T14:00:00+00:00",
-        "actual": "2021-02-01T13:56:00+00:00",
-      },
-      "airline": {
-        "name": "Korean Air",
-        "iata": "KE",
-      },
-      "flight": {
-        "number": "6125",
-        "iata": "KE6125",
-        "codeshared": {
-          "airline_name": "alaska airlines",
-          "flight_iata": "as1478",
-        }
-      }
-
+    public void setWebClient(WebClient webClient) {
+        this.webClient = webClient;
     }
-     */
 }

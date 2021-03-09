@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FlightService {
-    private final FlightController flightRepository;
+    private final FlightRepository flightRepository;
 
-    public FlightService(FlightController flightRepository) {
+    public FlightService(FlightRepository flightRepository) {
         this.flightRepository = flightRepository;
     }
 
