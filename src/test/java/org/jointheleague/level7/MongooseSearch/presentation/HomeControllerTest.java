@@ -1,4 +1,4 @@
-package org.jointheleague.level7.MongooseSearch.presentation.presentation;
+package org.jointheleague.level7.MongooseSearch.presentation;
 
 import org.jointheleague.level7.MongooseSearch.presentation.HomeController;
 import org.junit.jupiter.api.BeforeEach;

@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public class FlightRepository {
-    private final WebClient webClient;
+    private WebClient webClient;
     private static final String baseUrl= "http://api.aviationstack.com/v1/flights";
     private final String accessKey = "747ca55c8b46ed9f3b1956e6b7eb6394";
 
@@ -43,6 +43,10 @@ public class FlightRepository {
                 .retrieve()
                 .bodyToMono(AviationStackResponse.class);
         return aviationStackResponseMono.block();
+    }
+
+    public void setWebClient(WebClient webClient) {
+        this.webClient = webClient;
     }
 
     /*
