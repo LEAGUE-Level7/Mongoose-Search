@@ -3,7 +3,7 @@ package org.jointheleague.level7.MongooseSearch.presentation;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.jointheleague.level7.MongooseSearch.repository.DTO.AviationStackResponse;
+import org.jointheleague.level7.MongooseSearch.repository.dto.AviationStackResponse;
 import org.jointheleague.level7.MongooseSearch.service.FlightService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,5 +40,4 @@ public class FlightController {
     public AviationStackResponse getDepartingFlights(@RequestParam("q") String iataAirportCode){
         return flightService.getDepartingFlights(iataAirportCode);
     }
-
 }

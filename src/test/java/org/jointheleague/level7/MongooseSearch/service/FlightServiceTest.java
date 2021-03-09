@@ -1,6 +1,7 @@
 package org.jointheleague.level7.MongooseSearch.service;
 
-import org.jointheleague.level7.MongooseSearch.repository.DTO.AviationStackResponse;
+import org.jointheleague.level7.MongooseSearch.presentation.FlightController;
+import org.jointheleague.level7.MongooseSearch.repository.dto.AviationStackResponse;
 import org.jointheleague.level7.MongooseSearch.repository.FlightRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,11 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 class FlightServiceTest {
-    private FlightService flightService;
-
-    @Mock
-    private FlightRepository flightRepository;
-
+private FlightService flightService;
+@Mock
+private FlightRepository flightRepository;
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -24,33 +23,29 @@ class FlightServiceTest {
 
     @Test
     void whenGetArrivingFlights_thenReturnListOfResults() {
-        // given
+        //given
         String iataAirportCode = "SAN";
         AviationStackResponse expectedArrivingFlights = new AviationStackResponse();
 
         when(flightRepository.getArrivingFlights(iataAirportCode))
                 .thenReturn(expectedArrivingFlights);
-
-        // when
+        //when
         AviationStackResponse actualArrivingFlights = flightService.getArrivingFlights(iataAirportCode);
-
-        // then
+        //then
         assertEquals(expectedArrivingFlights, actualArrivingFlights);
     }
 
     @Test
     void whenGetDepartingFlights_thenReturnListOfResults() {
-        // given
+        //given
         String iataAirportCode = "SAN";
         AviationStackResponse expectedDepartingFlights = new AviationStackResponse();
 
         when(flightRepository.getDepartingFlights(iataAirportCode))
                 .thenReturn(expectedDepartingFlights);
-
-        // when
+        //when
         AviationStackResponse actualDepartingFlights = flightService.getDepartingFlights(iataAirportCode);
-
-        // then
+        //then
         assertEquals(expectedDepartingFlights, actualDepartingFlights);
     }
 }

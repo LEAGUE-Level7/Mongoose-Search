@@ -1,7 +1,7 @@
 package org.jointheleague.level7.MongooseSearch.presentation.presentation;
 
 import org.jointheleague.level7.MongooseSearch.presentation.FlightController;
-import org.jointheleague.level7.MongooseSearch.repository.DTO.AviationStackResponse;
+import org.jointheleague.level7.MongooseSearch.repository.dto.AviationStackResponse;
 import org.jointheleague.level7.MongooseSearch.service.FlightService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
