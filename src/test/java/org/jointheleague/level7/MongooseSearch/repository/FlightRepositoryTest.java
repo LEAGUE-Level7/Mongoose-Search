@@ -6,9 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.util.UriBuilder;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
+import java.util.function.Function;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -17,14 +22,6 @@ class FlightRepositoryTest {
     @Mock
     private WebClient webClient;
 
-    @Mock
-    WebClient.RequestHeadersUriSpec requestHeadersUriSpec;
-
-    @Mock
-    WebClient.RequestHeadersSpec requestHeadersSpec;
-
-    @Mock
-    WebClient.ResponseSpec responseSpec;
     @Mock
     WebClient webClientMock;
 
@@ -38,14 +35,13 @@ class FlightRepositoryTest {
     WebClient.ResponseSpec responseSpecMock;
 
     @Mock
-    Mono<AviationStackResponse> AviationStackResponseMonoMock;
-
+    Mono<AviationStackResponse> AviationStackMonoMock;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        flightRepository = new FlightRepository();
-        flightRepository.setWebClient(webClient);
+        flightRepository = new FlightRepository(webClientMock);
+
     }
 
     @Test
@@ -53,15 +49,18 @@ class FlightRepositoryTest {
         // given
         String iataAirportCode = "SAN";
         AviationStackResponse expectedAviationStackResponse = new AviationStackResponse();
-        flightRepository.getArrivingFlights(iataAirportCode);
-        when(webClient.get())
-                .thenReturn(requestHeadersUriSpec);
-        when(requestHeadersUriSpec.uri(anyString()))
-                .thenReturn(requestHeadersSpec);
-        when(requestHeadersSpec.retrieve())
-                .thenReturn(responseSpec);
-        when(responseSpec.bodyToMono(AviationStackResponse.class))
-                .thenReturn(Mono.just(expectedAviationStackResponse));
+
+        when(webClientMock.get())
+                .thenReturn(requestHeadersUriSpecMock);
+        when(requestHeadersUriSpecMock.uri((Function<UriBuilder, URI>) any()))
+                .thenReturn(requestHeadersSpecMock);
+        when(requestHeadersSpecMock.retrieve())
+                .thenReturn(responseSpecMock);
+        when(responseSpecMock.bodyToMono(AviationStackResponse.class))
+                .thenReturn(AviationStackMonoMock);
+        when(AviationStackMonoMock.block())
+                .thenReturn(expectedAviationStackResponse);
+
         // when
        AviationStackResponse actualAviationStackResponse = flightRepository.getArrivingFlights(iataAirportCode);
 
@@ -71,6 +70,26 @@ class FlightRepositoryTest {
 
     @Test
     void getDepartingFlights() {
+        // given
+        String iataAirportCode = "SAN";
+        AviationStackResponse expectedAviationStackResponse = new AviationStackResponse();
+
+        when(webClientMock.get())
+                .thenReturn(requestHeadersUriSpecMock);
+        when(requestHeadersUriSpecMock.uri((Function<UriBuilder, URI>) any()))
+                .thenReturn(requestHeadersSpecMock);
+        when(requestHeadersSpecMock.retrieve())
+                .thenReturn(responseSpecMock);
+        when(responseSpecMock.bodyToMono(AviationStackResponse.class))
+                .thenReturn(AviationStackMonoMock);
+        when(AviationStackMonoMock.block())
+                .thenReturn(expectedAviationStackResponse);
+
+        // when
+        AviationStackResponse actualAviationStackResponse = flightRepository.getDepartingFlights(iataAirportCode);
+
+        // then
+        assertEquals(expectedAviationStackResponse,actualAviationStackResponse);
     }
 
 }
