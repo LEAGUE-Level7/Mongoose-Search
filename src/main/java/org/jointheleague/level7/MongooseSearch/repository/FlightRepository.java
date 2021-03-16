@@ -20,6 +20,11 @@ public class FlightRepository {
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
     }
+
+    public FlightRepository(WebClient webClient) {
+        this.webClient = webClient;
+    }
+
     //http://api.aviationstack.com/v1/flights?access_key=747ca55c8b46ed9f3b1956e6b7eb6394&arr_iata=SAN
     public AviationStackResponse getArrivingFlights(String iataAirportCode){
         Mono<AviationStackResponse> aviationStackResponseMono = webClient
@@ -43,10 +48,6 @@ public class FlightRepository {
                 .retrieve()
                 .bodyToMono(AviationStackResponse.class);
         return aviationStackResponseMono.block();
-    }
-
-    public void setWebClient(WebClient webClient) {
-        this.webClient = webClient;
     }
 
     /*

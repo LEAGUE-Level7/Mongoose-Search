@@ -6,11 +6,16 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.util.UriBuilder;
 import reactor.core.publisher.Mono;
+
+import java.net.URI;
+import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
 
 class FlightRepositoryTest {
     private FlightRepository flightRepository;
@@ -28,13 +33,12 @@ class FlightRepositoryTest {
     WebClient.ResponseSpec responseSpecMock;
 
     @Mock
-    Mono<AviationStackResponse> aviationStackResponseMono;
+    Mono<AviationStackResponse> AviationStackMonoMock;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        flightRepository = new FlightRepository();
-        flightRepository.setWebClient(webClientMock);
+        flightRepository = new FlightRepository(webClientMock);
     }
 
     @Test
@@ -44,13 +48,13 @@ class FlightRepositoryTest {
         AviationStackResponse expectedAviationStackResponse = new AviationStackResponse();
         when(webClientMock.get())
                 .thenReturn(requestHeadersUriSpecMock);
-        when(requestHeadersUriSpecMock.uri(anyString()))
+        when(requestHeadersUriSpecMock.uri((Function<UriBuilder, URI>) any()))
                 .thenReturn(requestHeadersSpecMock);
         when(requestHeadersSpecMock.retrieve())
                 .thenReturn(responseSpecMock);
         when(responseSpecMock.bodyToMono(AviationStackResponse.class))
-                .thenReturn(aviationStackResponseMono);
-        when(aviationStackResponseMono.block())
+                .thenReturn(AviationStackMonoMock);
+        when(AviationStackMonoMock.block())
                 .thenReturn(expectedAviationStackResponse);
 
         // when
