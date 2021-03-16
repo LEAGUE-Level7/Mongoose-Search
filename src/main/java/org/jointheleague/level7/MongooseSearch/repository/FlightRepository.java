@@ -21,6 +21,10 @@ public class FlightRepository { // request to aviation stack
                 .build(); //
     }
 
+    public FlightRepository(WebClient webClient) {
+        this.webClient = webClient;
+    }
+
     public AviationStackResponse getArrivingFlights(String iataAirportCode){
         Mono<AviationStackResponse> stringMono = webClient.get()
                 .uri(uriBuilder -> uriBuilder //updates url with the parameters that we need for stuff
@@ -40,9 +44,5 @@ public class FlightRepository { // request to aviation stack
                 ).retrieve()
                 .bodyToMono(AviationStackResponse.class);
         return stringMono.block();
-    }
-
-    public void setWebClient(WebClient webClient) {
-        this.webClient = webClient;
     }
 }
