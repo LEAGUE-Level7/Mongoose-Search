@@ -16,13 +16,16 @@ public class HomeControllerIntTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
-    public void whenHome_ThenReturnMovedPermanentlyAndRedirect() throws Exception {
+@Test
+public void whenHome_ThenReturnMovedPermanentlyAndRedirect() throws Exception {
     //try catch for important code that is needed to make code do stuff
     mockMvc.perform(get("/")) //makes the request --> request URI = "/"
     .andDo(print())
     .andExpect(status().isMovedPermanently())
     .andExpect(redirectedUrl("swagger-ui.html"));
-    }
+}
+//     catch(Exception e){
+//        e.printStackTrace();
+//    }
 
 }
