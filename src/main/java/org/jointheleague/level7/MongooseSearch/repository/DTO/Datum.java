@@ -36,6 +36,22 @@ public class Datum {
     private Object aircraft;
     @JsonProperty("live")
     private Object live;
+
+    public Datum(String flightDate, String flightStatus, Departure departure, Arrival arrival, Airline airline, Flight flight, Object aircraft, Object live, Map<String, Object> additionalProperties) {
+        this.flightDate = flightDate;
+        this.flightStatus = flightStatus;
+        this.departure = departure;
+        this.arrival = arrival;
+        this.airline = airline;
+        this.flight = flight;
+        this.aircraft = aircraft;
+        this.live = live;
+        this.additionalProperties = additionalProperties;
+    }
+
+    public Datum() {
+    }
+
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
