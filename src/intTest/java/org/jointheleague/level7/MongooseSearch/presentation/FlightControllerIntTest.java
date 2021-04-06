@@ -44,6 +44,8 @@ public class FlightControllerIntTest {
 
         when (flightService.getArrivingFlights("SAN")).thenReturn(aviationStackResponse);
         when (flightService.getDepartingFlights("SAN")).thenReturn(aviationStackResponse);
+        when (flightService.getArrivingFlights("TYPO")).thenReturn(new AviationStackResponse());
+        when (flightService.getDepartingFlights("TYPO")).thenReturn(new AviationStackResponse());
     }
 
     @Test

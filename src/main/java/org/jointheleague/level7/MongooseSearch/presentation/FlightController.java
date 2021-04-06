@@ -5,10 +5,13 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.jointheleague.level7.MongooseSearch.repository.DTO.AviationStackResponse;
 import org.jointheleague.level7.MongooseSearch.service.FlightService;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/flights")
@@ -27,7 +30,11 @@ public class FlightController {
             @ApiResponse(code=404,message="No flight results found.")
     })
     public AviationStackResponse getArrivingFlights(@RequestParam("q") String iataAirportCode){
-        return flightService.getArrivingFlights(iataAirportCode);
+        AviationStackResponse arrivingFlights = flightService.getArrivingFlights(iataAirportCode);
+        if(CollectionUtils.isEmpty(arrivingFlights.getData())){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No flights found.");
+        }
+        return arrivingFlights;
     }
 
     // departing flights method plus annotations
@@ -38,7 +45,11 @@ public class FlightController {
             @ApiResponse(code=404,message="No flight results found.")
     })
     public AviationStackResponse getDepartingFlights(@RequestParam("q") String iataAirportCode){
-        return flightService.getDepartingFlights(iataAirportCode);
+        AviationStackResponse departingFlights = flightService.getDepartingFlights(iataAirportCode);
+        if(CollectionUtils.isEmpty(departingFlights.getData())){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No flights found.");
+        }
+        return departingFlights;
     }
 
 }
